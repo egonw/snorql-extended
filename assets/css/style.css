@@ -33,7 +33,7 @@ footer p{
 }
 
 .panel-body{
-  max-height: 300px;
+  max-height: 450px;
   overflow: scroll;
 }
 
@@ -43,7 +43,7 @@ footer p{
 }
 
 #index-page {
-    padding: 3px 15px;   
+    padding: 3px 15px;
 }
 
 #index-page img{
