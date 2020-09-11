@@ -158,10 +158,14 @@ function getIndexFromTree(segment, nodes){
     return null;
 }
 
-
 function fetchExamples() {
     var repo = jQuery("#examples-repo").val();
-    if(!repo || (!repo.includes("https://github.com") && !repo.includes("https://api.github.com"))){
+
+    if(repo.charAt(repo.length-1) == "/"){
+        repo = repo.substring(0, repo.length - 1);
+    }
+
+    if(!repo || (!repo.includes("https://github.com"))){
         alert("Please enter SPARQL examples Github repo URL!!");
     }else{
 
@@ -169,7 +173,7 @@ function fetchExamples() {
         var link = repo;
 
         if(repo.includes("https://github.com")){
-            //link = "https://api.github.com/repos/"+repo.substring(19)+"/contents";
+
             link = "https://api.github.com/repos/"+repo.substring(19)+"/git/trees/master?recursive=1";
 
             var pager = mainAjax(link, repo.substring(19));
@@ -192,6 +196,8 @@ function fetchExamples() {
                 				  editor.getDoc().setValue(response);
                 				}
                 			});
+                        }else{
+                          $('#examples').treeview('toggleNodeExpanded', [ node.nodeId, { silent: true } ]);
                         }
                     }
                 });
